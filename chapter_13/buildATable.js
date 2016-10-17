@@ -34,6 +34,11 @@ function buildTable(data) {
             var cell = document.createElement("td");
             var element = document.createTextNode(data[i][Object.keys(data[i])[j]]);
             cell.appendChild(element);
+            // right-aligns if cell contents are numbers 
+            // assumes numbers have been formatted in a certain way (all digit chars)
+            if (cell.innerHTML.match(/^[\d]+$/)) {
+                cell.style.textAlign = "right";
+            }
             row.appendChild(cell);
         }
         table.appendChild(row);
