@@ -19,6 +19,7 @@ the mouse’s current position every time a "mousemove" event occurs.
 */
 
 var trail = [];
+var count = 0;
 
 // initiates trail
 function initTrail(event) { 
@@ -35,16 +36,12 @@ function initTrail(event) {
     removeEventListener("mousemove", initTrail);
 }
 
-addEventListener("mousemove", initTrail);
-
-/*
-function animate(time) {
-    for (trailDiv in trail) {
-        trailDiv.style.left = (event.pageX - 4) + "px";
-        trailDiv.style.top = (event.pageY - 4) + "px";
-    }
-    requestAnimationFrame(animate);
+function follow(event) {
+    trail[count%10].style.left = (event.pageX - 4) + "px";
+    trail[count%10].style.top = (event.pageY - 4) + "px";
+    count++;
 }
 
-requestAnimationFrame(animate);
-*/
+addEventListener("mousemove", initTrail);
+addEventListener("mousemove", follow);
+
