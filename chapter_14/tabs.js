@@ -16,7 +16,7 @@ When it works, extend it to also style the currently active button differently.
 
 function asTabs(node) {
     var tabs = [];
-
+    var buttons = [];
     for (var i = 1; i < node.childNodes.length; i++) {
         if (node.childNodes[i].nodeType == document.ELEMENT_NODE) {
             tabs.push(node.childNodes[i]);
@@ -34,16 +34,29 @@ function asTabs(node) {
         }
     }
     
-    displayTab(0);
+    function colourActiveButton(number) {
+        for (var i = 0; i < buttons.length; i++) {
+            if (i == number) {
+                buttons[i].style.backgroundColor = "#CAEFEC"; 
+            } else { 
+                buttons[i].style.backgroundColor = "#788A88"; 
+            }
+        }
+    }
     
     tabs.forEach(function(tab) {
         var button = document.createElement("button");
         var buttonText = document.createTextNode(tab.getAttribute('data-tabname'));
         button.appendChild(buttonText);
+        buttons.push(button);
         button.addEventListener("click", function() { 
-            displayTab(tabs.indexOf(tab)); 
+            displayTab(tabs.indexOf(tab));
+            colourActiveButton(tabs.indexOf(tab));
         });
         node.insertBefore(button, firstChild);
     });
+    
+    displayTab(0);
+    colourActiveButton(0);
 }
 asTabs(document.querySelector("#wrapper"));
