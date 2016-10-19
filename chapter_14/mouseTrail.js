@@ -28,10 +28,8 @@ function initTrail(event) {
         trailDiv.className = "trail";
         trailDiv.style.left = (event.pageX - 4) + "px";
         trailDiv.style.top = (event.pageY - 4) + "px";
-        trailDiv.setAttribute('data-speed', i+1);
         document.body.appendChild(trailDiv);
         trail.push(trailDiv);
-        console.log("added to trail");
     }
     removeEventListener("mousemove", initTrail);
 }
