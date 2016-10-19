@@ -16,7 +16,7 @@ When it works, extend it to also style the currently active button differently.
 
 function asTabs(node) {
     var tabs = [];
-    var buttons = [];
+
     for (var i = 1; i < node.childNodes.length; i++) {
         if (node.childNodes[i].nodeType == document.ELEMENT_NODE) {
             tabs.push(node.childNodes[i]);
@@ -33,18 +33,17 @@ function asTabs(node) {
             }
         }
     }
+    
     displayTab(0);
-    for (var i = 0; i < tabs.length; i++) {
+    
+    tabs.forEach(function(tab) {
         var button = document.createElement("button");
-        var buttonText = document.createTextNode(tabs[i].getAttribute('data-tabname'));
+        var buttonText = document.createTextNode(tab.getAttribute('data-tabname'));
         button.appendChild(buttonText);
-        buttons.push(button);
-        node.insertBefore(button, firstChild);
-    }
-    buttons.forEach(function(button){
         button.addEventListener("click", function() { 
-            displayTab(i); 
+            displayTab(tabs.indexOf(tab)); 
         });
+        node.insertBefore(button, firstChild);
     });
 }
 asTabs(document.querySelector("#wrapper"));
