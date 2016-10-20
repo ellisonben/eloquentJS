@@ -20,6 +20,7 @@ the mouse’s current position every time a "mousemove" event occurs.
 
 var trail = [];
 var count = 0;
+var timer;
 
 // initiates trail
 function initTrail(event) { 
@@ -34,12 +35,28 @@ function initTrail(event) {
     removeEventListener("mousemove", initTrail);
 }
 
+// gets trail to follow where mouse is
 function follow(event) {
     trail[count%10].style.left = (event.pageX - 4) + "px";
     trail[count%10].style.top = (event.pageY - 4) + "px";
     count++;
 }
 
+// gets trail to catch up when mouse stops
+function catchUp(event) {
+    var i = 0;
+    clearInterval(timer);
+    timer = setInterval(function() {
+        if (i >= 10) {
+            clearInterval(timer);
+        }
+        trail[count%10].style.left = (event.pageX - 4) + "px";
+        trail[count%10].style.top = (event.pageY - 4) + "px";
+        count++;
+        i++
+    }, 50);
+}
+
 addEventListener("mousemove", initTrail);
 addEventListener("mousemove", follow);
-
+addEventListener("mousemove", catchUp);
