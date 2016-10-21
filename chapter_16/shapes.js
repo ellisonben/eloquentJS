@@ -26,6 +26,16 @@ cx.lineTo(10, 70);
 cx.lineTo(140, 70);
 cx.lineTo(100, 10);
 cx.closePath();
-
-
 cx.stroke();
+
+//red diamond - needs to be more like a rhombus - currently parallelogram
+cx.beginPath();
+cx.moveTo(225, 10)
+cx.lineTo(160, 40);
+cx.lineTo(225, 70);
+cx.lineTo(290, 40);
+cx.closePath();
+cx.fillStyle = "red";
+cx.fill()
+
+//TODO: create functions for each shape with these examples before trying trickier shapes
