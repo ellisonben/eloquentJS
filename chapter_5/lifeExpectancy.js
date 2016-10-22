@@ -40,12 +40,10 @@ function groupBy(array, grouper) {
     groups = {};
     array.forEach(function(element) {
         group = grouper(element);
-        if (group in groups) {
-            groups[group].push(element);
-        } else {
-            groups[group] = [];
-            groups[group].push(element);
+        if (!(group in groups)) {
+            groups[group] = [];    
         }
+        groups[group].push(element);
     });
     return groups;
 }

@@ -32,13 +32,13 @@ function buildTable(data) {
         var row = document.createElement("tr");
         for (var j = 0; j < Object.keys(data[i]).length; j++) {
             var cell = document.createElement("td");
-            var element = document.createTextNode(data[i][Object.keys(data[i])[j]]);
-            cell.appendChild(element);
+            var content = data[i][Object.keys(data[i])[j]].toString();
             // right-aligns if cell contents are numbers 
             // assumes numbers have been formatted in a certain way (all digit chars)
-            if (cell.innerHTML.match(/^[\d]+$/)) {
+            if (content.match(/^\d+$/)) {
                 cell.style.textAlign = "right";
             }
+            cell.appendChild(document.createTextNode(content));
             row.appendChild(cell);
         }
         table.appendChild(row);

@@ -32,6 +32,7 @@ function animate(time) {
         antiAngle -= (time - lastTime) * 0.001;
     }
     lastTime = time;
+
     // cat and hat on opposite sides of ellipse
     cat1.style.top = (Math.sin(angle) * 70 + 100) + "px";
     cat1.style.left = (Math.cos(angle) * 200 + 250) + "px";

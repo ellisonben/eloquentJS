@@ -43,7 +43,7 @@ verify(/ious\b/,
        ["ruinous", "consciousness"]);
 
 //A whitespace character followed by a dot, comma, colon, or semicolon
-verify(/\s(\.|,|:|;)/,
+verify(/\s[\.,:;]/,
        ["bad punctuation ."],
        ["escape the dot"]);
 
@@ -53,9 +53,9 @@ verify(/\w{7,}/,
        ["no", "hotten totten tenten"]);
 
 //A word without the letter e
-verify(/\b[^e\s]+\b/,
+verify(/\b[a-df-z]+\b/i,
        ["red platypus", "wobbling nest"],
-       ["earth bed", "learning ape"]);
+       ["earth bed", "learning ape", "red,head"]);
 
 
 function verify(regexp, yes, no) {
