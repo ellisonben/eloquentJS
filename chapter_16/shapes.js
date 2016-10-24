@@ -63,9 +63,9 @@ function drawSpiral(context, position, size, whirls, numberOfLines) {
     var y = position.y;
     var angle = 0;
     var totalAngle = whirls * 2 * Math.PI;
-    var scale = size / (2 * Math.max(
-                        Math.abs(totalAngle * Math.cos(totalAngle)), 
-                        Math.abs(totalAngle * Math.sin(totalAngle))
+    var scale = size / (2 * Math.sqrt(
+                        Math.pow(totalAngle * Math.cos(totalAngle), 2) + 
+                        Math.pow(totalAngle * Math.sin(totalAngle), 2)
                         ));
     context.beginPath();
     context.moveTo(x + size/2, y + size/2);
