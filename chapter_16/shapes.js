@@ -47,7 +47,22 @@ function drawDiamond(context, position, colour) {
     context.fill()
 }
 
+function drawZigZag(context, position) {
+    var x = position.x;
+    var y = position.y;
+    var dir = 1;
+    context.beginPath();
+    context.moveTo(x + 10, y + 10);
+    for (var down = 20; down < 180; down += 10) {
+        cx.lineTo(x + 75 + 65*dir, y + down);
+        dir = -dir;
+    }
+    context.stroke();
+}
+
 //trapezium
 drawTrapezium(cx, {x: 0, y: 0});
 //red diamond 
 drawDiamond(cx, {x: 150, y: 0}, "red");
+//a zigzagging line
+drawZigZag(cx, {x: 300, y: 0});
