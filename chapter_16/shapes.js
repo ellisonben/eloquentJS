@@ -19,23 +19,35 @@ tends to make the code needlessly hard to read and modify.
 
 var cx = document.querySelector("canvas").getContext("2d");
 
+//TODO: introduce size into functions 
+//potentially make shapes flush with their container
+
+function drawTrapezium(context, position) {
+    var x = position.x;
+    var y = position.y;
+    context.beginPath();
+    context.moveTo(x + 50, y + 10);
+    context.lineTo(x + 10, y + 70);
+    context.lineTo(x + 140, y + 70);
+    context.lineTo(x + 100, y + 10);
+    context.closePath();
+    context.stroke();
+}
+
+function drawDiamond(context, position, colour) {
+    var x = position.x;
+    var y = position.y;
+    context.beginPath();
+    context.moveTo(x + 75, y + 10);
+    context.lineTo(x + 10, y + 75);
+    context.lineTo(x + 75, y + 140);
+    context.lineTo(x + 140, y + 75);
+    context.closePath();
+    context.fillStyle = colour;
+    context.fill()
+}
+
 //trapezium
-cx.beginPath();
-cx.moveTo(50, 10);
-cx.lineTo(10, 70);
-cx.lineTo(140, 70);
-cx.lineTo(100, 10);
-cx.closePath();
-cx.stroke();
-
-//red diamond - needs to be more like a rhombus - currently parallelogram
-cx.beginPath();
-cx.moveTo(225, 10)
-cx.lineTo(160, 40);
-cx.lineTo(225, 70);
-cx.lineTo(290, 40);
-cx.closePath();
-cx.fillStyle = "red";
-cx.fill()
-
-//TODO: create functions for each shape with these examples before trying trickier shapes
+drawTrapezium(cx, {x: 0, y: 0});
+//red diamond 
+drawDiamond(cx, {x: 150, y: 0}, "red");
