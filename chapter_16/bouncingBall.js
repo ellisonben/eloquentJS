@@ -4,8 +4,12 @@ Use the requestAnimationFrame technique that we saw in Chapter 13 and Chapter
 and bounces off the box’s sides when it hits them.
 */
 
-var cx = document.querySelector("canvas").getContext("2d");
-var ball = new Ball(new Vector(100, 100));
+
+var canvas = document.querySelector("canvas"); 
+var cx = canvas.getContext("2d");
+var initialX = Math.floor(Math.random() * canvas.width + 1);
+var initialY = Math.floor(Math.random() * canvas.height + 1);
+var ball = new Ball(new Vector(initialX, initialY));
 
 // Vector constructor
 function Vector(x, y) {
@@ -24,26 +28,20 @@ Vector.prototype.times = function(factor) {
 // Ball constructor
 function Ball(position) {
     this.position = position;
-    this.speed = new Vector(50, 100);
+    // could randomise this?
+    this.speed = new Vector(100, 150);
 }
 
 Ball.prototype.act = function(step) {
     var newPosition = this.position.plus(this.speed.times(step));
-    if (newPosition.x > 400 || newPosition.x < 0) {
+    if (newPosition.x > canvas.width || newPosition.x < 0) {
         this.speed.x *= -1;
-    } else if (newPosition.y > 400 || newPosition.y < 0) {
+    } else if (newPosition.y > canvas.height || newPosition.y < 0) {
         this.speed.y *= -1; 
     } else {
         this.position = newPosition;
     }
-    
 }
-
-// Updates Ball Position
-function updateBallPosition() {
-    
-}
-
 
 // Draw functions
 function drawBall(centreX, centreY) {
@@ -54,11 +52,11 @@ function drawBall(centreX, centreY) {
 }
 
 function clearCanvas() {
-    cx.clearRect(0, 0, 400, 400);
+    cx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function drawBox() {
-    cx.strokeRect(0, 0, 400, 400);
+    cx.strokeRect(0, 0, canvas.width, canvas.height);
 }
 
 
