@@ -24,15 +24,15 @@ Vector.prototype.times = function(factor) {
 // Ball constructor
 function Ball(position) {
     this.position = position;
-    this.speed = new Vector(0, 100);
+    this.speed = new Vector(50, 100);
 }
 
 Ball.prototype.act = function(step) {
     var newPosition = this.position.plus(this.speed.times(step));
     if (newPosition.x > 400 || newPosition.x < 0) {
-        this.speed = this.speed.times(-1);
+        this.speed.x *= -1;
     } else if (newPosition.y > 400 || newPosition.y < 0) {
-        this.speed = this.speed.times(-1); // needs to be improved
+        this.speed.y *= -1; 
     } else {
         this.position = newPosition;
     }
@@ -74,13 +74,9 @@ function frame(time) {
 requestAnimationFrame(frame);
 
 function updateAnimation(step) {
-    
     ball.act(step);
-        
     clearCanvas();
-    
     drawBox();
-    
     drawBall(ball.position.x, ball.position.y);
 }
 
